@@ -11,6 +11,8 @@ class Thing extends Component {
     }
   }
 
+  
+
   updateName = (ev) => {
     const { thing, saveThing } = this.props
     thing.name = ev.target.value
@@ -24,12 +26,19 @@ class Thing extends Component {
     }
   }
 
+  pressed = (ev) => {
+    const { thing, saveCheck } = this.props
+    console.log('hi')
+    thing.completed = ev.target.value
+    saveCheck(thing)
+  }
+
   render() {
     const { thing, removeThing } = this.props
 
     return (
       <li className="Thing">
-        <input type="checkbox" value="on" />
+        <input type="checkbox" value="on" onChange={this.pressed} checked={thing.completed} />
         <div className="details">
           <ContentEditable
             className="name"

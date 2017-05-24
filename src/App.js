@@ -25,6 +25,7 @@ class App extends Component {
     return {
       id: `thing-${Date.now()}`,
       name: '',
+      completed: false,
     }
   }
 
@@ -41,6 +42,19 @@ class App extends Component {
     this.setState({ things })
   }
 
+  saveCheck = (thing) => {
+    const things = {...this.state.things}
+    //things[thing.completed] = thing
+    if (thing.completed===true) {
+      thing.completed=false
+    }  
+    else {
+      thing.completed=true
+
+    }  
+    this.setState({ things })
+  }
+
   removeThing = (thing) => {
     const things = {...this.state.things}
     things[thing.id] = null
@@ -51,6 +65,7 @@ class App extends Component {
     const actions = {
       saveThing: this.saveThing,
       removeThing: this.removeThing,
+      saveCheck: this.saveCheck,
     }
 
     return (
